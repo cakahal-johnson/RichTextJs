@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+</head>
+<body>
+    <h2>JS for You</h2>
+    <form action="" id="my_form">
+        <small id="msg"></small>
+        <input type="text" name="" id="name"> username
+        <input type="email" name="" id="email"> email
+        <br> <br>
+        <input type="submit" name="" id="submit">
+    </form>
+
+    <style>
+        .error
+        {
+            background: orangered;
+            color: #fff;
+        }
+    </style>
+
+    <ul id="userlist"></ul>
+
+    <script>
+        const myForm = document.querySelector('#my_form')
+
+        const nameInput = document.querySelector('#name')
+        const emailInput = document.querySelector('#email')
+
+        const msg = document.querySelector('#msg')
+        const userlist = document.querySelector('#userlist')
+
+        myForm.addEventListener('submit', onSubmit)
+
+        function onSubmit(e){
+            e.preventDefault()
+
+            if(nameInput.value === '' || emailInput.value === ''){
+                msg.classList.add('error')
+                msg.innerHTML = 'please enter all fields***'
+
+                setTimeout(() => msg.remove(), 3000);
+                
+            }else{
+                const li = document.createElement('li')
+                li.appendChild(document.createTextNode(`${nameInput.value} : ${emailInput.value}`));
+
+                userlist.appendChild(li)
+
+                //clear field
+                nameInput.value = ''
+                emailInput.value = ''
+            }
+        }
+
+    </script>
+</body>
+</html>
